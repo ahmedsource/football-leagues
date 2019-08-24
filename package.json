@@ -3,9 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.19.0",
+    "node-sass": "^4.12.0",
     "react": "^16.9.0",
+    "react-compose": "^2.0.0",
     "react-dom": "^16.9.0",
-    "react-scripts": "3.1.1"
+    "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.1",
+    "react-toastify": "^5.3.2",
+    "sass-loader": "^7.3.1",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.88.0"
   },
   "scripts": {
     "start": "react-scripts start",
