@@ -9,17 +9,20 @@ import { Container, Grid, Segment, Header, Divider, GridColumn, Flag } from 'sem
 
 import TeamBox from '../../components/TeamBox'
 import PlayerBox from '../../components/PlayerBox'
-
+import TeamGamesSection from './TeamGamesSection'
 class TeamDetailsPage extends React.Component {
 
     state={
         teamLoading: true,
         team: null,
+        matchesLoading: true,
+        matches:[],
     }
 
     componentDidMount(){
         const {league_id, team_id} = this.props.match.params
         this.getTeamDetails(team_id)
+        this.getTeamMatches(league_id, team_id)
     }
 
     getTeamDetails = (id)=>{
@@ -34,6 +37,25 @@ class TeamDetailsPage extends React.Component {
         }).catch((error)=> {
             toast.error(error.message, {autoClose: 6000});
         })
+    }
+
+    getTeamMatches = (league_id, team_id) => {
+        axios.get(`${footBallBaseUrl}/competitions/${league_id}/matches`, { 
+            headers:{"X-Auth-Token": footBallBasekey}
+        }).then(response => {
+            if(response.data){
+                const all_matches = response.data.matches
+                let matches = []
+                for (var i = 0; i < all_matches.length; i++) {
+                    if (all_matches[i].homeTeam.id == team_id || all_matches[i].awayTeam.id == team_id){
+                        matches.push(all_matches[i])
+                    }
+                }
+                this.setState({matches, matchesLoading:false})
+            }
+        }).catch((error)=> {
+            toast.error(error.message, {autoClose: 6000});
+        }) 
     }
 
     render() {
@@ -55,9 +77,19 @@ class TeamDetailsPage extends React.Component {
                             />
                         }
                     </Segment>
+
+                    <Header textAlign='left' as='h1'>Games</Header>
+                    <Segment loading={this.state.matchesLoading}>
+                        {!!this.state.matchesLoading && <Divider section hidden/>}
+                        {!!this.state.matches && !!this.state.matches.length> 0 &&
+                            <TeamGamesSection team={this.state.team}  matches={this.state.matches}/>
+                        }
+                    </Segment>
+
                     <Header textAlign='left' as='h1'>Squad</Header>
-                    <Segment>
-                        {!!this.state.team && !!this.state.team.squad.length> 0 &&
+                    <Segment loading={this.state.teamLoading}>
+                        {!!this.state.teamLoading && <Divider section hidden/>}
+                        {!!this.state.team && !!this.state.team.squad && !!this.state.team.squad.length> 0 &&
                             <Segment.Group stacked>
                                 {this.state.team.squad.map(player =>(
                                     <PlayerBox
