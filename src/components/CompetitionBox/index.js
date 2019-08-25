@@ -45,15 +45,16 @@ class CompetitionBox extends React.Component {
             <Segment>
                 <Grid>
                     <Grid.Row>
-                        <Grid.Column verticalAlign='middle' textAlign='center' mobile={16} tablet={16} computer={2}>
-                            <Segment textAlign='center' compact basic loading={this.state.imageLoading }>
-                                {!!this.state.image &&
-                                    <Image className='league-logo' centered src={this.state.image} size='tiny' />
-                                }
-                                {!this.state.imageLoading && !this.state.image &&
-                                    <Icon name='image outline' size='huge' />
-                                }
-                            </Segment>
+                        <Grid.Column verticalAlign='middle' textAlign='center' mobile={16} tablet={16} computer={4}>
+                            {!!this.state.imageLoading&&
+                                <Segment textAlign='center' compact basic loading={true}></Segment>
+                            }
+                            {!!this.state.image &&
+                                <Image className='league-logo' centered src={this.state.image} size='tiny' />
+                            }
+                            {!this.state.imageLoading && !this.state.image &&
+                                <Icon name='image outline' size='huge' />
+                            }
                         </Grid.Column>
                         <Grid.Column textAlign='left' mobile={16} tablet={16} computer={6}>
                             <Header as='h3' textAlign='left'>
@@ -67,10 +68,8 @@ class CompetitionBox extends React.Component {
                             <Icon name='soccer' />
                             <small>{this.props.startDate}</small> - <small>{this.props.endDate}</small>
                         </Grid.Column>
-                        <Grid.Column verticalAlign='middle' textAlign='center' mobile={16} tablet={16} computer={2}>
-                        </Grid.Column>
                         {!!this.props.goToLeague &&
-                            <Grid.Column verticalAlign='middle' textAlign='center' mobile={16} tablet={16} computer={4}>
+                            <Grid.Column verticalAlign='middle' textAlign='center' mobile={16} tablet={16} computer={6}>
                                 <Button fluid basic onClick={this.props.goToLeague}> Details</Button>
                             </Grid.Column>
                         }

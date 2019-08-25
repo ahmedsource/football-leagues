@@ -26,6 +26,19 @@ export function setLocalStore(key, value) {
 export function mapFlagToAreaName(areaName) {
     if(['world', 'europe'].includes(areaName.toLowerCase())){return 'eu'}
     else if(areaName.toLowerCase() === 'england'){return 'uk'}
+    else if(areaName.toLowerCase() == 'côte d’ivoire'){return 'ci'}
     else {return areaName.toLowerCase()}
                                     
+}
+
+export function mapPositionToColor(position){
+    const colors = {
+        'Goalkeeper':'yellow',
+        'Defender':'blue',
+        'Midfielder':'green',
+        'Attacker':'red',
+        'COACH':'grey',
+        'ASSISTANT_COACH':'grey'
+    }
+    return colors[position]
 }

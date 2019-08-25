@@ -9,9 +9,9 @@ class MainHeader extends React.PureComponent {
         <React.Fragment>
             <Menu.Item
                 link
-                as={Link} to={'/'}
+                as={Link} to={'/leagues'}
             >
-                <b>others</b>
+                <b>Leagues</b>
             </Menu.Item>
         </React.Fragment>
     )

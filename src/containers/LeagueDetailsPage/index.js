@@ -4,9 +4,10 @@ import { withRouter, Link } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import {footBallBaseUrl, footBallBasekey} from '../../lib/constants'
-import { Container, Grid, Segment, Header, Divider } from 'semantic-ui-react'
+import { Container, Grid, Segment, Header, Divider, GridColumn } from 'semantic-ui-react'
 
 import CompetitionBox from '../../components/CompetitionBox'
+import TeamBox from '../../components/TeamBox'
 
 class LeagueDetailsPage extends React.Component {
 
@@ -20,9 +21,10 @@ class LeagueDetailsPage extends React.Component {
     componentDidMount(){
         const {league_id} = this.props.match.params
         this.getLeagueDetails(league_id)
+        this.getLeagueTeams(league_id)
     }
 
-    getLeagueDetails(id){
+    getLeagueDetails = (id) => {
         axios.get(`${footBallBaseUrl}/competitions/${id}`, { 
             params: {'plan': 'TIER_ONE'}, 
             headers:{"X-Auth-Token": footBallBasekey}
@@ -37,6 +39,30 @@ class LeagueDetailsPage extends React.Component {
         })
     }
 
+    getLeagueTeams = (id) => {
+        axios.get(`${footBallBaseUrl}/competitions/${id}/teams`, { 
+            params: {'plan': 'TIER_ONE'}, 
+            headers:{"X-Auth-Token": footBallBasekey}
+        }).then(response => {
+            console.log(response)
+            if(response.data.teams.length > 0){
+                const teams = response.data.teams
+                this.setState({teams, teamsLoading:false})
+            }
+        }).catch((error)=> {
+            toast.error(error.message, {autoClose: 6000});
+        })
+    }
+
+    goToTeam = (id)=>{
+        const {league_id} = this.props.match.params
+        let redirectToTeam = `/leagues/${league_id}/teams/${id}`
+        this.props.history.push({
+            pathname: redirectToTeam,
+            state:{}
+        })
+    }
+
 
     render() {
         return(
@@ -44,7 +70,7 @@ class LeagueDetailsPage extends React.Component {
                 <Container>
                     <Header textAlign='left' as='h1'>Football Leagues</Header>
                     <Segment loading={this.state.competitionLoading}>
-                        {this.state.competitionLoading && <Divider hidden/>}
+                        {!!this.state.competitionLoading && <Divider section hidden/>}
                         {!!this.state.competition &&
                             <CompetitionBox  
                                 id={this.state.competition.id} 
@@ -57,6 +83,24 @@ class LeagueDetailsPage extends React.Component {
                         }
                     </Segment>
                     <Header textAlign='left' as='h1'>Teams</Header>
+                    <Segment loading={this.state.teamsLoading}>
+                        {!!this.state.teamsLoading && <Divider section hidden/>}
+                        <Grid>
+                            {this.state.teams && this.state.teams.map(team =>(
+                                <GridColumn textAlign='left' mobile={16} tablet={16} computer={8} key={team.id}>
+                                    <TeamBox 
+                                        id={team.id} 
+                                        name={team.name}
+                                        address={team.address}
+                                        email={team.email}
+                                        website={team.website}
+                                        crestUrl={team.crestUrl}
+                                        goToTeam={()=>this.goToTeam(team.id)}
+                                    />
+                                </GridColumn>
+                            ))}
+                        </Grid>
+                    </Segment>
                 </Container>
             </React.Fragment>
         )
