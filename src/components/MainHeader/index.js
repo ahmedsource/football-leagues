@@ -23,7 +23,7 @@ class MainHeader extends React.PureComponent {
                     fixed='top'
                     secondary
                     inverted
-                    style={{backgroundColor: 'black'}}
+                    className="header-up"
                 >
                     <Container>
                         <Menu.Item>

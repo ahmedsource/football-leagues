@@ -70,7 +70,7 @@ class CompetitionBox extends React.Component {
                         </Grid.Column>
                         {!!this.props.goToLeague &&
                             <Grid.Column verticalAlign='middle' textAlign='center' mobile={16} tablet={16} computer={6}>
-                                <Button fluid basic onClick={this.props.goToLeague}> Details</Button>
+                                <Button className="new-green" fluid color='green' basic onClick={this.props.goToLeague}> Details</Button>
                             </Grid.Column>
                         }
                     </Grid.Row>

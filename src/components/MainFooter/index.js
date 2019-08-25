@@ -1,31 +1,25 @@
 import React from 'react'
 import './style.scss';
-import {Grid, List, Flag, Icon} from 'semantic-ui-react'
+import {Grid, List, Flag, Icon, Divider} from 'semantic-ui-react'
 import { ToastContainer } from 'react-toastify';
 class MainFooter extends React.PureComponent {
     
     render() {
         return(
             <React.Fragment>
+                <Divider section hidden />
                 <Grid centered verticalAlign='middle' className='footer-down'>
                     <Grid.Row>
-                        <Grid.Column mobile={16} tablet={16} computer={6} textAlign='center'>
-                            <List horizontal>
-                                <List.Item as='a'>About Us</List.Item>
-                                <List.Item as='a'>Sitemap</List.Item>
-                                <List.Item as='a'>Contact</List.Item>
-                            </List>
-                        </Grid.Column>
-                        <Grid.Column mobile={16} tablet={16} computer={2} textAlign='center'>
-                            <Flag name='us' />
-                            <span>English</span>
+                        <Grid.Column mobile={16} tablet={16} computer={4} textAlign='center'>
+                            {/* <Icon inverted name='soccer' /> */}
                         </Grid.Column>
                         <Grid.Column mobile={16} tablet={16} computer={4} textAlign='center'>
-                            <List horizontal>
-                                <List.Item as='a'><Icon as='i' circular size='large' name='facebook' color='grey' /></List.Item>
-                                <List.Item as='a'><Icon as='i' circular size='large' name='twitter' color='grey' /></List.Item>
-                                <List.Item as='a'><Icon as='i' circular size='large' name='youtube' color='grey' /></List.Item>
-                            </List>
+                        <Flag name='us' />
+                            <b className='white-text'>English</b>
+                        </Grid.Column>
+                        <Grid.Column mobile={16} tablet={16} computer={4} textAlign='center'>
+                            <Icon inverted name="copyright outline" />
+                            <b className='white-text'>copyright reserved to Football App</b>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
