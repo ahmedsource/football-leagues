@@ -1,11 +1,11 @@
 import React from 'react';
 import { compose } from 'react-compose';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import {footBallBaseUrl, footBallBasekey} from '../../lib/constants'
 
-import { Container, Grid, Segment, Header, Divider, GridColumn, Flag } from 'semantic-ui-react'
+import { Container, Segment, Header, Divider } from 'semantic-ui-react'
 
 import TeamBox from '../../components/TeamBox'
 import PlayerBox from '../../components/PlayerBox'
@@ -47,7 +47,7 @@ class TeamDetailsPage extends React.Component {
                 const all_matches = response.data.matches
                 let matches = []
                 for (var i = 0; i < all_matches.length; i++) {
-                    if (all_matches[i].homeTeam.id == team_id || all_matches[i].awayTeam.id == team_id){
+                    if (String(all_matches[i].homeTeam.id) === String(team_id) || String(all_matches[i].awayTeam.id) === String(team_id)){
                         matches.push(all_matches[i])
                     }
                 }

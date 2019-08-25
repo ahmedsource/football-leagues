@@ -1,7 +1,7 @@
 import React from 'react';
 import { compose } from 'react-compose';
 import { withRouter, Link } from 'react-router-dom';
-import { Menu, Button, Ref, Container, Responsive, Modal, Divider, Icon } from 'semantic-ui-react';
+import { Menu, Container, Responsive, Modal, Divider, Icon } from 'semantic-ui-react';
 
 import './style.scss';
 class MainHeader extends React.PureComponent {

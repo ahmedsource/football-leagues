@@ -1,7 +1,5 @@
 import React from 'react';
-import { Container, Grid, Segment, Header, Image, Icon, Flag, Divider, Button,List} from 'semantic-ui-react'
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import { Grid, Header} from 'semantic-ui-react'
 import './../style.scss'
 
 import GameBox from '../../../components/GameBox'

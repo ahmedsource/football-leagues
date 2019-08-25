@@ -1,7 +1,5 @@
 import React from 'react';
-import { Container, Grid, Segment, Header, Image, Icon, Flag, Divider, Button,List, Label} from 'semantic-ui-react'
-import axios from 'axios';
-import {imageSearchUrl, imageSearchkey, leagueLogos} from '../../lib/constants'
+import {Grid, Segment, Flag, Label} from 'semantic-ui-react'
 import {mapFlagToAreaName, mapPositionToColor} from '../../lib/helpers'
 
 import './style.scss'

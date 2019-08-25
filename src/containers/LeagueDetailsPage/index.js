@@ -1,6 +1,6 @@
 import React from 'react';
 import { compose } from 'react-compose';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import {footBallBaseUrl, footBallBasekey} from '../../lib/constants'
@@ -31,7 +31,6 @@ class LeagueDetailsPage extends React.Component {
         }).then(response => {
             if(response.data){
                 const competition = response.data
-                console.log(competition)
                 this.setState({competition, competitionLoading:false})
             }
         }).catch((error)=> {
@@ -44,7 +43,6 @@ class LeagueDetailsPage extends React.Component {
             params: {'plan': 'TIER_ONE'}, 
             headers:{"X-Auth-Token": footBallBasekey}
         }).then(response => {
-            console.log(response)
             if(response.data.teams.length > 0){
                 const teams = response.data.teams
                 this.setState({teams, teamsLoading:false})

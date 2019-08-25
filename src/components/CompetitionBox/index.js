@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, Segment, Header, Image, Icon, Flag, Divider, Button} from 'semantic-ui-react'
+import { Grid, Segment, Header, Image, Icon, Flag, Divider, Button} from 'semantic-ui-react'
 import axios from 'axios';
 import {imageSearchUrl, imageSearchkey, leagueLogos} from '../../lib/constants'
 import {mapFlagToAreaName} from '../../lib/helpers'
@@ -24,7 +24,6 @@ class CompetitionBox extends React.Component {
                 'q': `${this.props.name} logo`
             }}
             ).then(response => {
-                console.log(response)
                 if(response.data.image_results.length > 0){
                     const image = response.data.image_results[0].thumbnail
                     this.setState({image, imageLoading:false})

@@ -6,7 +6,6 @@ import './App.scss';
 import MainHeader from './components/MainHeader';
 import MainFooter from './components/MainFooter';
 
-import HomePage from './containers/HomePage';
 import LeaguesPage from './containers/LeaguesPage';
 import LeagueDetailsPage from './containers/LeagueDetailsPage';
 import TeamDetailsPage from './containers/TeamDetailsPage';

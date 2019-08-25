@@ -1,6 +1,6 @@
 import React from 'react'
 import './style.scss';
-import {Grid, List, Flag, Icon, Divider} from 'semantic-ui-react'
+import {Grid, Flag, Icon, Divider} from 'semantic-ui-react'
 import { ToastContainer } from 'react-toastify';
 class MainFooter extends React.PureComponent {
     

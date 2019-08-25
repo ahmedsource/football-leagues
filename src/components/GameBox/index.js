@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, Segment, Header, Image, Icon, Flag, Divider, Button} from 'semantic-ui-react'
+import { Grid, Segment, Header, Image, Icon } from 'semantic-ui-react'
 import axios from 'axios';
 import {footBallBaseUrl, footBallBasekey} from '../../lib/constants'
 import {formatDate} from '../../lib/helpers'
@@ -28,14 +28,12 @@ class CompetitionBox extends React.Component {
     }
     
     getTeamImage = (id, isHome) =>{
-        console.log("axios")
         axios.get(`${footBallBaseUrl}/teams/${id}`, { 
             params: {'plan': 'TIER_ONE'}, 
             headers:{"X-Auth-Token": footBallBasekey}
         }).then(response => {
             if(response.data){
                 const team = response.data
-                console.log(team)
                 isHome ?
                     this.setState({homeTeamImage:team.crestUrl, homeTeamImageLoading:false})
                 :
