@@ -17,7 +17,7 @@ function App() {
       <div className="App">
         <MainHeader/>
         <Switch>
-          <Route exact path='/' component={HomePage} />
+          <Route exact path='/' component={LeaguesPage} />
           <Route exact path='/leagues' component={LeaguesPage} />
           <Route exact path='/leagues/:league_id' component={LeagueDetailsPage} />
           <Route exact path='/leagues/:league_id/teams' component={LeagueDetailsPage} />

@@ -1,9 +1,9 @@
 import React from 'react';
 import { compose } from 'react-compose';
 import { withRouter, Link } from 'react-router-dom';
-import { Menu, Button, Ref, Container, Responsive, Modal, Divider } from 'semantic-ui-react';
+import { Menu, Button, Ref, Container, Responsive, Modal, Divider, Icon } from 'semantic-ui-react';
 
-import logo from './../../assets/logo.svg'
+import './style.scss';
 class MainHeader extends React.PureComponent {
     items = () => (
         <React.Fragment>
@@ -28,7 +28,9 @@ class MainHeader extends React.PureComponent {
                     <Container>
                         <Menu.Item>
                             <Link to={'/'}>
-                                <img alt="logo" style={{margin: 'auto', width: 'auto'}} src={logo} />
+                                <Icon inverted style={{margin: 'auto', width: 'auto'}} name='soccer' size='huge' />
+                                &nbsp;
+                                <h4 className='logo-title'>FootballApp</h4>
                             </Link>
                         </Menu.Item>
                         <Menu.Menu position='right'>
@@ -37,7 +39,6 @@ class MainHeader extends React.PureComponent {
                             </Responsive>
                             <Responsive as={React.Fragment} maxWidth={767}>
                                 <Modal
-                                    dimmer='inverted' 
                                     trigger={<Menu.Item link icon="bars" />} 
                                     centered={false} basic size='small'
                                     style={{zIndex: '100', backgroundColor: '#fff'}}
@@ -56,6 +57,8 @@ class MainHeader extends React.PureComponent {
                         </Menu.Menu>
                     </Container>
                 </Menu>
+                <Divider section hidden/>
+                <Divider section hidden/>
                 <Divider section hidden/>
             </React.Fragment>
         );
