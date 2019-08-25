@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Grid, Segment, Header, Image, Icon, Flag, Divider, Button} from 'semantic-ui-react'
 import axios from 'axios';
 import {imageSearchUrl, imageSearchkey, leagueLogos} from '../../lib/constants'
+import {mapFlagToAreaName} from '../../lib/helpers'
 
 import './style.scss'
 class CompetitionBox extends React.Component {
@@ -34,10 +35,6 @@ class CompetitionBox extends React.Component {
         }
     }
 
-    goToLeague = (id)=>{
-
-    }
-
     componentDidMount(){
         this.getImage()
     }
@@ -63,20 +60,20 @@ class CompetitionBox extends React.Component {
                                 {this.props.name}
                             </Header>
                             <b>
-                                <Flag name={
-                                    ['world', 'europe'].includes(this.props.areaName.toLowerCase()) ? 'eu':
-                                    this.props.areaName.toLowerCase()
-                                }/>
+                                <Flag name={mapFlagToAreaName(this.props.areaName)}/>
                                 {this.props.areaName}
                             </b>
                             <Divider fitted hidden />
                             <Icon name='soccer' />
                             <small>{this.props.startDate}</small> - <small>{this.props.endDate}</small>
                         </Grid.Column>
-
-                        <Grid.Column verticalAlign='middle' textAlign='center' mobile={16} tablet={16} computer={8}>
-                                <Button basic onClick={()=>this.goToLeague(this.props.id)}> Details</Button>
+                        <Grid.Column verticalAlign='middle' textAlign='center' mobile={16} tablet={16} computer={2}>
                         </Grid.Column>
+                        {!!this.props.goToLeague &&
+                            <Grid.Column verticalAlign='middle' textAlign='center' mobile={16} tablet={16} computer={4}>
+                                <Button fluid basic onClick={this.props.goToLeague}> Details</Button>
+                            </Grid.Column>
+                        }
                     </Grid.Row>
                 </Grid>
             </Segment>

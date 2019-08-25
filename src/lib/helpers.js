@@ -22,3 +22,10 @@ export function getLocalStore(key) {
 export function setLocalStore(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
+
+export function mapFlagToAreaName(areaName) {
+    if(['world', 'europe'].includes(areaName.toLowerCase())){return 'eu'}
+    else if(areaName.toLowerCase() === 'england'){return 'uk'}
+    else {return areaName.toLowerCase()}
+                                    
+}

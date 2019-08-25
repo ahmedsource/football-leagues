@@ -15,8 +15,10 @@ class LeaguesPage extends React.Component {
     }
 
     componentDidMount(){
-        axios.get(`${footBallBaseUrl}/competitions`, { params: {'plan': 'TIER_ONE'}, headers:{"X-Auth-Token": footBallBasekey}}
-        ).then(response => {
+        axios.get(`${footBallBaseUrl}/competitions`, { 
+            params: {'plan': 'TIER_ONE'}, 
+            headers:{"X-Auth-Token": footBallBasekey}
+        }).then(response => {
             console.log(response)
             if(response.data.competitions.length > 0){
                 const competitions = response.data.competitions
@@ -24,6 +26,14 @@ class LeaguesPage extends React.Component {
             }
         }).catch((error)=> {
             toast.error(error.message, {autoClose: 6000});
+        })
+    }
+
+    goToLeague = (id)=>{
+        let redirectToLeague = `/leagues/${id}`
+        this.props.history.push({
+            pathname: redirectToLeague,
+            state:{}
         })
     }
 
@@ -43,6 +53,7 @@ class LeaguesPage extends React.Component {
                                 areaName={competition.area.name}
                                 startDate={competition.currentSeason.startDate}
                                 endDate={competition.currentSeason.endDate}
+                                goToLeague={()=>this.goToLeague(competition.id)}
                             />
                         ))}
                     </Segment>
