@@ -1,11 +1,12 @@
 import React from 'react';
 import { compose } from 'react-compose';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import {footBallBaseUrl, footBallBasekey} from '../../lib/constants'
+import {mapFlagToAreaName} from '../../lib/helpers'
 
-import { Container, Segment, Header, Divider } from 'semantic-ui-react'
+import { Container, Segment, Header, Divider, Flag } from 'semantic-ui-react'
 
 import TeamBox from '../../components/TeamBox'
 import PlayerBox from '../../components/PlayerBox'
@@ -63,12 +64,22 @@ class TeamDetailsPage extends React.Component {
             <React.Fragment>
                 <Container>
                     <Header textAlign='left' as='h1'>Football Leagues</Header>
+                    {this.props.history.location.state &&this.props.history.location.state.areaName &&
+                        <Flag name={mapFlagToAreaName(this.props.history.location.state.areaName)}></Flag>
+                    }
+                    {this.props.history.location.state &&this.props.history.location.state.leagueName 
+                        && this.props.match.params.league_id &&
+                        <Link to={`/leagues/${this.props.match.params.league_id}`}>
+                            <span>{this.props.history.location.state.leagueName}</span>
+                        </Link>
+                    }
                     <Segment loading={this.state.teamLoading}>
                         {!!this.state.teamLoading && <Divider section hidden/>}
                         {!!this.state.team &&
                             <TeamBox  
-                                id={this.state.team.id} 
+                                id={this.state.team.id}
                                 name={this.state.team.name}
+                                area={this.state.team.area.name}
                                 address={this.state.team.address}
                                 email={this.state.team.email}
                                 website={this.state.team.website}

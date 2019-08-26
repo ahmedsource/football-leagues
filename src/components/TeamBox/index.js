@@ -1,6 +1,8 @@
 import React from 'react';
-import {Grid, Segment, Header, Image, Icon, List} from 'semantic-ui-react'
+import {Grid, Segment, Header, Image, Icon, List, Flag} from 'semantic-ui-react'
 import './style.scss'
+
+import {mapFlagToAreaName} from '../../lib/helpers'
 class TeamBox extends React.Component {  
     render() {
       return(
@@ -27,6 +29,12 @@ class TeamBox extends React.Component {
                                 {this.props.name}
                             </Header>
                             <List>
+                                {!!this.props.area &&
+                                    <List.Item>
+                                        <Flag name={mapFlagToAreaName(this.props.area)}/>
+                                        {this.props.area}
+                                    </List.Item>
+                                }
                                 <List.Item>
                                     <List.Icon name='marker' />
                                     <List.Content>

@@ -57,7 +57,7 @@ class LeagueDetailsPage extends React.Component {
         let redirectToTeam = `/leagues/${league_id}/teams/${id}`
         this.props.history.push({
             pathname: redirectToTeam,
-            state:{}
+            state:{areaName:this.state.competition.area.name, leagueName:this.state.competition.name}
         })
     }
 
