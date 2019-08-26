@@ -10,6 +10,7 @@ To run project
 
 The API has CORS issue so I am using a chrome extension to allow requests
 https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi
+
 you can run chrome with disabled web security also to allow it instead of installing the extension. 
 
 Project is deployed to (https://football-app-react.herokuapp.com/) but still CORS policy is blocking requests
